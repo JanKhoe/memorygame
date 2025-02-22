@@ -187,7 +187,7 @@ function generateRandomPrompt() {
     const sign = document.getElementsByClassName('sign')[0]
     colorOrShape = Math.floor(Math.random() * 2)
     console.log(colorOrShape)
-    randitem == colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
+    randitem = colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     while(givenPrompts.includes(randitem)){
         randitem == colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     }
