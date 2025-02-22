@@ -13,7 +13,7 @@ console.log(childNodeHeight, childNodeWidth)
 const gap = parseFloat(window.getComputedStyle(gridContainer).gap);
 
 const shapes = ['circle', 'triangle', 'square', 'star'];
-const colors = ['red', 'blue', 'yellow', 'green', 'orange'];
+const colors = ['red', 'blue', 'yellow', 'green'];
 const givenPrompts = [];
 let correctPrompts = 0;
 
@@ -26,7 +26,6 @@ const tracker = {
     'blue': 0,
     'yellow': 0,
     'green': 0,
-    'orange': 0
 };
 
 let checkRightAnswer = () => {
