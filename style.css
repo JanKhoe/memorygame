@@ -1,0 +1,382 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+button {
+  background-color: #ff4d4d; /* Bright red background */
+  color: white; /* White text */
+  padding: 12px 24px; /* Padding for better spacing */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+button:hover {
+  background-color: #e60000;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #b30000;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+body, html {
+  background: linear-gradient(to bottom, #222, #444);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+/* Grid container styling */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  /* width: 100%; */
+  height: calc(100% - 40px);
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid item styling */
+.grid-item {
+
+  transition: transform 0.3s ease;
+}
+
+
+
+.card-container {
+  perspective: 1000px;
+  display:flex;
+  gap: 12px
+}
+
+.card {
+  width: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+}
+
+.card-front {
+  background-color: white;
+  color: black;
+}
+
+.card-back {
+  background-color: black;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.card-container.active .card{
+  transform: rotateY(180deg);
+}
+
+.curtain-container {
+  position: fixed; /* Use fixed positioning to cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  overflow: hidden; /* Hide overflowing content */
+  z-index: 1; /* Ensure it's on top of other content */
+}
+
+.curtain {
+  width: 50%;
+  height: 100%;
+  background-color: #333333; /* Curtain color */
+  position: absolute;
+  top: 0;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.left-curtain {
+  left: 0;
+  animation-name: closeLeftCurtain;
+}
+
+.right-curtain {
+  right: 0;
+  animation-name: closeRightCurtain;
+}
+
+@keyframes openLeftCurtain {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes openRightCurtain {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes closeLeftCurtain {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes closeRightCurtain {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* Lines container */
+.lines-container {
+  position: fixed;
+  top: -350px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none; /* Ensure lines don't interfere with clicks */
+}
+
+/* Individual lines */
+.line {
+  width: 4px; /* Thickness of the lines */
+  height: 100%;
+  background-color: #808080; /* Grey color */
+  position: relative;
+  animation: lowerLines 2s ease-in-out forwards;
+}
+
+.left-line {
+  left: -40px; /* Position the left line */
+}
+
+.right-line {
+  right: -40px; /* Position the right line */
+}
+
+/* Sign container */
+.sign-container {
+  position: fixed;
+  top: -100%; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  padding: 20px;
+  background: linear-gradient(45deg, #ffcc00, #ff6600); /* Retro gradient */
+  border: 10px solid #ff3300; /* Bold border */
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 102, 0, 0.8), 0 0 60px rgba(255, 102, 0, 0.6); /* Glow effect */
+  text-align: center;
+  animation: lowerSign 2s ease-in-out forwards;
+}
+
+/* Sign text */
+.sign h1 {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* Animation to lower the sign */
+@keyframes lowerSign {
+  0% {
+    top: -100%; /* Start off-screen */
+  }
+  100% {
+    top: 10%; /* Lower to the desired position */
+  }
+}
+
+/* Animation to lower the lines */
+@keyframes lowerLines {
+  0% {
+    top: -100%; /* Start off-screen */
+  }
+  100% {
+    top: 10%; /* Lower to the desired position */
+  }
+}
+
+/* Input container */
+.input-container {
+  position: fixed;
+  bottom: -100%; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  border: 10px solid #ff3300; /* Bold border */
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 102, 0, 0.8), 0 0 60px rgba(255, 102, 0, 0.6); /* Glow effect */
+  text-align: center;
+  animation: raiseInput 2s ease-in-out forwards;
+}
+
+/* Gameshow input */
+.gameshow-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.5rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.gameshow-input::placeholder {
+  color: #888;
+}
+
+/* Animation to raise the input */
+@keyframes raiseInput {
+  0% {
+    bottom: -100%; /* Start off-screen */
+  }
+  100% {
+    bottom: 20%; /* Raise to the desired position */
+  }
+}
+
+.quiz-container{
+  position: fixed;
+  width: 100vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Shapes */
+.shape {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid; /* Color will be applied via JavaScript */
+  background-color: transparent !important; /* Ensure no background color */
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+}
+
+.star {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: transparent !important; /* Ensure no background color */
+}
+
+.star::before,
+.star::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: currentColor; /* Use currentColor to inherit the color */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+/* Colors */
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.orange {
+  background-color: orange;
+}
