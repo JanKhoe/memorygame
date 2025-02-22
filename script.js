@@ -106,7 +106,7 @@ function shuffleGrid(event) {
                 }
                 resolve()
                 //FOR GRIFFIN: CHANGE THIS NUMBER TO GIVE PEOPLE MORE/LESS TIME TO VIEW THE SHAPES
-            }, 3000)
+            }, 3500)
         }).then( () => {
             new Promise((resolve) => {
                 setTimeout(() => {
@@ -203,7 +203,6 @@ function generateRandomPrompt() {
     }
     else{
         randShape = getRandomItem(shapes)
-        randShape = getRandomItem(colors)
         while(givenPrompts.includes(randShape)){
             randShape = getRandomItem(colors)
         }
