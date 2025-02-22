@@ -187,33 +187,16 @@ function generateRandomPrompt() {
     const sign = document.getElementsByClassName('sign')[0]
     colorOrShape = Math.floor(Math.random() * 2)
     console.log(colorOrShape)
-    if(colorOrShape){
-        randColor = getRandomItem(colors)
-        while(givenPrompts.includes(randColor)){
-            randColor = getRandomItem(colors)
-        }
-        givenPrompts.push(randColor)
-        checkRightAnswer = (guess) => {
-            if(tracker[randColor] == guess){
-                return true;
-            }
-            return false;
-        }
-        sign.firstElementChild.textContent  = `HOW MANY TIMES DID THE COLOR ${randColor} APPEAR?`
+    randitem == colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
+    while(givenPrompts.includes(randitem)){
+        randitem == colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     }
-    else{
-        randShape = getRandomItem(shapes)
-        while(givenPrompts.includes(randShape)){
-            randShape = getRandomItem(colors)
+    sign.firstElementChild.textContent  = `HOW MANY ${randitem} CARDS WERE THERE?`
+    checkRightAnswer = (guess) => {
+        if(tracker[randitem] == guess){
+            return true;
         }
-        givenPrompts.push(randShape)
-        checkRightAnswer = (guess) => {
-            if(tracker[randShape] == guess){
-                return true;
-            }
-            return false;
-        }
-        sign.firstElementChild.textContent  = `HOW MANY TIMES DID A ${randShape} APPEAR?`
+        return false;
     }
 }
 
