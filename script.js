@@ -144,9 +144,13 @@ function shuffleGrid(event) {
                     inputContainer.classList.add('input-container');
                     const gameshowInput = document.createElement('input');
                     gameshowInput.type = 'text';
-                    gameshowInput.placeholder = 'Type your answer here...';
+                    gameshowInput.placeholder = 'Enter a number here...';
                     gameshowInput.classList.add('gameshow-input');
                     gameshowInput.id = 'gameshow-input'
+                    gameshowInput.addEventListener('input', function(event){
+                        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+                    });
+                    gameshowInput.autocomplete = 'off'
                     inputContainer.appendChild(gameshowInput);
                     quizContainer.appendChild(linesContainer);
                     quizContainer.appendChild(signContainer);
@@ -167,7 +171,31 @@ function shuffleGrid(event) {
                                     this.value = ''
                                     if (++correctPrompts == 3){
                                         const sign = document.getElementsByClassName('sign')[0]
-                                        sign.firstElementChild.textContent  = `YOU WIN!`
+                                        const gameshowinput = document.getElementsByClassName('gameshow-input')[0]
+                                        const inputcontainer = document.getElementsByClassName('input-container')[0]
+                                        sign.firstElementChild.textContent  = `YOU WIN! NOW GO REDEEM YOUR PRIZE.`
+                                        gameshowinput.remove();
+                                        const quizContainer = document.getElementsByClassName('quiz-container')[0]
+                                        const prizeContainer = document.createElement('div')
+                                        prizeContainer.classList.add('prize-container');
+                                        const lighttri1 = document.createElement('div')
+                                        lighttri1.classList.add('light-triangle', 'triangle-1')
+                                        const lighttri2 = document.createElement('div')
+                                        lighttri2.classList.add('light-triangle', 'triangle-2')
+                                        const lighttri3 = document.createElement('div')
+                                        lighttri3.classList.add('light-triangle', 'triangle-3')
+                                        lightrotor = document.createElement('div')
+                                        lightrotor.classList.add('light-rotor')
+
+                                        reward = document.createElement('img')
+                                        reward.src = 'reward.png'
+
+                                        inputcontainer.appendChild(reward)
+                                        quizContainer.appendChild(prizeContainer)
+                                        lightrotor.appendChild(lighttri1)
+                                        lightrotor.appendChild(lighttri2)
+                                        lightrotor.appendChild(lighttri3)
+                                        quizContainer.appendChild(lightrotor)
                                     }
                                 }
                                 else{
@@ -189,8 +217,9 @@ function generateRandomPrompt() {
     console.log(colorOrShape)
     randitem = colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     while(givenPrompts.includes(randitem)){
-        randitem == colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
+        randitem = colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     }
+    givenPrompts.push(randitem)
     sign.firstElementChild.textContent  = `HOW MANY ${randitem} CARDS WERE THERE?`
     checkRightAnswer = (guess) => {
         if(tracker[randitem] == guess){

@@ -11,16 +11,19 @@ img {
 }
 
 button {
+  margin-left: 25px;
   background-color: #ff4d4d; /* Bright red background */
   color: white; /* White text */
   padding: 12px 24px; /* Padding for better spacing */
   border: none; /* Remove default border */
   border-radius: 8px; /* Rounded corners */
-  font-size: 16px; /* Font size */
+  font-size: 24px; /* Font size */
   font-weight: bold; /* Bold text */
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 250px;
+  height: 100px;
 }
 
 button:hover {
@@ -116,7 +119,7 @@ body, html {
   height: 100vh; /* Full viewport height */
   display: flex;
   overflow: hidden; /* Hide overflowing content */
-  z-index: 1; /* Ensure it's on top of other content */
+  z-index: 3; /* Ensure it's on top of other content */
 }
 
 .curtain {
@@ -220,6 +223,7 @@ body, html {
   box-shadow: 0 0 30px rgba(255, 102, 0, 0.8), 0 0 60px rgba(255, 102, 0, 0.6); /* Glow effect */
   text-align: center;
   animation: lowerSign 2s ease-in-out forwards;
+  z-index: 10;
 }
 
 /* Sign text */
@@ -238,7 +242,7 @@ body, html {
     top: -100%; /* Start off-screen */
   }
   100% {
-    top: 10%; /* Lower to the desired position */
+    top: 5%; /* Lower to the desired position */
   }
 }
 
@@ -248,7 +252,7 @@ body, html {
     top: -100%; /* Start off-screen */
   }
   100% {
-    top: 10%; /* Lower to the desired position */
+    top: 0%; /* Lower to the desired position */
   }
 }
 
@@ -264,7 +268,9 @@ body, html {
   box-shadow: 0 0 30px rgba(255, 102, 0, 0.8), 0 0 60px rgba(255, 102, 0, 0.6); /* Glow effect */
   text-align: center;
   animation: raiseInput 2s ease-in-out forwards;
+  z-index: 10;
 }
+
 
 /* Gameshow input */
 .gameshow-input {
@@ -300,7 +306,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 5;
 }
 
 /* Shapes */
@@ -360,6 +366,47 @@ body, html {
   );
 }
 
+/* Rotating wrapper for the triangles */
+.light-rotor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate 7s linear infinite;
+}
+
+/* Base triangle styling */
+.light-triangle {
+  position: absolute;
+  width: 25%; /* Adjust width here */
+  height: 150%;
+  clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  z-index: 4;
+  bottom: -25%;
+}
+
+/* Triangle colors */
+.triangle-1 {
+  background: radial-gradient(circle at 50% 100%,  rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 85%);
+}
+
+.triangle-2 {
+  background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 85%);
+  transform: translateX(-50%) rotate(120deg); /* Rotate and center */
+}
+
+.triangle-3 {
+  background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 85%);
+  transform: translateX(-50%) rotate(240deg); /* Rotate and center */
+}
+
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Colors */
 .red {
   background-color: red;
@@ -380,3 +427,4 @@ body, html {
 .orange {
   background-color: orange;
 }
+
