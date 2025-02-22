@@ -2,13 +2,13 @@
 const gridContainer = document.getElementById('grid-container');
 const containerWidth = parseFloat(window.getComputedStyle(gridContainer).width);
 const maxCols = Math.floor((containerWidth - 190) / 170) + 1;
-console.log(maxCols)
-console.log()
+//console.log(maxCols)
+//console.log()
 
 const childNode = gridContainer.querySelector(':scope > *');
 const childNodeWidth = parseFloat(window.getComputedStyle(childNode).width);
 const childNodeHeight = parseFloat(window.getComputedStyle(childNode).height);
-console.log(childNodeHeight, childNodeWidth)
+//console.log(childNodeHeight, childNodeWidth)
 
 const gap = parseFloat(window.getComputedStyle(gridContainer).gap);
 
@@ -56,7 +56,7 @@ window.onload = function() {
 
         cardBack.appendChild(shapeElement);
     });
-    console.log(tracker);
+    //console.log(tracker);
 
 };
 
@@ -66,20 +66,20 @@ function getRandomItem(array) {
 
 function shuffleGrid(event) {
     event.target.removeEventListener('click', shuffleGrid);
-    console.log(gridContainer)
+    //console.log(gridContainer)
     const gridItems = Array.from(gridContainer.children);
 
     const shuffledItems = shuffleArray(gridItems);
 
     shuffledItems.forEach((item, index) => {
-        //console.log(item)
+        ////console.log(item)
         const { row, col } = getGridPosition(index, Math.min(maxCols, gridItems.length));
-        //console.log(row, col)
+        ////console.log(row, col)
         item.style.transition = 'transform 0.5s ease-in-out';
         const translateX = (col - getGridColumn(item, 6)) * (childNodeWidth + gap);
-        //console.log(translateX)
+        ////console.log(translateX)
         const translateY = (row - getGridRow(item, 6)) * (childNodeHeight + gap);
-        //console.log(translateY)
+        ////console.log(translateY)
         item.style.transform = `translate(${translateX}px, ${translateY}px)`;
     });
 
@@ -165,7 +165,7 @@ function shuffleGrid(event) {
                         document.getElementById('gameshow-input').addEventListener('keypress', function(event) {
                             if (event.key === 'Enter') {
                                 const inputValue = event.target.value;
-                                console.log('Input value:', inputValue, checkRightAnswer(inputValue));
+                                //console.log('Input value:', inputValue, checkRightAnswer(inputValue));
                                 if(checkRightAnswer(inputValue)){
                                     generateRandomPrompt();
                                     this.value = ''
@@ -214,7 +214,7 @@ function shuffleGrid(event) {
 function generateRandomPrompt() {
     const sign = document.getElementsByClassName('sign')[0]
     colorOrShape = Math.floor(Math.random() * 2)
-    console.log(colorOrShape)
+    //console.log(colorOrShape)
     randitem = colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
     while(givenPrompts.includes(randitem)){
         randitem = colorOrShape ? getRandomItem(colors) : getRandomItem(shapes);
