@@ -173,7 +173,7 @@ function shuffleGrid(event) {
                                         const sign = document.getElementsByClassName('sign')[0]
                                         const gameshowinput = document.getElementsByClassName('gameshow-input')[0]
                                         const inputcontainer = document.getElementsByClassName('input-container')[0]
-                                        sign.firstElementChild.textContent  = `YOU WIN! NOW GO REDEEM YOUR PRIZE.`
+                                        sign.firstElementChild.textContent  = `YOU WIN! NOW GO GRAB YOUR NEXT CLUE.`
                                         gameshowinput.remove();
                                         const quizContainer = document.getElementsByClassName('quiz-container')[0]
                                         const prizeContainer = document.createElement('div')
